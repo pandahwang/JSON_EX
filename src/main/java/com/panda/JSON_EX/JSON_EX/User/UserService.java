@@ -49,7 +49,9 @@ public class UserService {
         Optional<User> user = userRepository.findById(id);
         return user.get().getPost_count();
     }
-
+    
+    
+    // 특정 사용자의 이름을 가져옴
     public String getUserName(Long id) {
         Optional<User> user = userRepository.findById(id);
         return user.get().getUsername();
