@@ -56,7 +56,6 @@ public class UserService {
                 isKeyChanged = true;
             } else {
                 System.out.println("key 값 불일치");
-                isKeyChanged = false;
             }
 
             // 변환한 User 객체 리스트를 DB에 저장
