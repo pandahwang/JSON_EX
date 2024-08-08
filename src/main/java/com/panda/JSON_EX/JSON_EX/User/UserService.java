@@ -6,9 +6,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +27,9 @@ public class UserService {
             });
 
             // 변환한 User 객체 리스트를 DB에 저장
+            if(checkKey()){
             userRepository.saveAll(users);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,8 +40,11 @@ public class UserService {
     public boolean checkKey() {
         boolean isKeyChanged = false;
         try {
-            String[] keys = {"id", "username", "post_count"};
-
+//            String[] keys = {"id", "username", "post_count"};
+            Set<String> keys = new LinkedHashSet<>();
+            keys.add("user_id");
+            keys.add("username");
+            keys.add("post_count");
             // ClassPathResource로 user-data.json 파일을 로드
             ClassPathResource resource = new ClassPathResource("user-data.json");
 
@@ -51,6 +54,7 @@ public class UserService {
 
             // json 파일 key 값 확인
             System.out.println(data.get(0).keySet());
+            System.out.println(data.get(0).keySet().getClass());
             if (data.get(0).keySet().equals(keys)) {
                 System.out.println("key 값 일치");
                 isKeyChanged = true;
