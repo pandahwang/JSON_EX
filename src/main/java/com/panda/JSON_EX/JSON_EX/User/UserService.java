@@ -18,7 +18,6 @@ public class UserService {
     // json 파일을 읽어와서 DB에 저장하는 메소드
     public void update() {
         try {
-
             // ClassPathResource로 user-data.json 파일을 로드
             ClassPathResource resource = new ClassPathResource("user-data.json");
 
@@ -40,11 +39,11 @@ public class UserService {
     public boolean checkKey() {
         boolean isKeyChanged = false;
         try {
-//            String[] keys = {"id", "username", "post_count"};
             Set<String> keys = new LinkedHashSet<>();
             keys.add("user_id");
             keys.add("username");
             keys.add("post_count");
+            
             // ClassPathResource로 user-data.json 파일을 로드
             ClassPathResource resource = new ClassPathResource("user-data.json");
 

@@ -18,20 +18,30 @@ public class UserController {
     }
 
     @GetMapping("/sum")
-    public String sum(Model model) {
-        int sum = userService.sum();
-        model.addAttribute("sum", sum);
+    public String sum(Model model, Long id) {
+        int sum = 0;
+        if(id == null) {
+            sum = userService.sum();
+            model.addAttribute("name", "전체");
+            model.addAttribute("sum", sum);
+        } else {
+            String name = userService.getUserName(id);
+            sum = userService.sumByID(id);
+            model.addAttribute("name", name + "의");
+            model.addAttribute("sum", sum);
+        }
         return "/getsum";
     }
 
-    @GetMapping("/sumByID")
-    public String sumByID(Model model, Long id) {
-        String name = userService.getUserName(id);
-        model.addAttribute("name", name + "의");
-        // postcount를 sum에 저장
-        int sum = userService.sumByID(id);
-        model.addAttribute("sum", sum);
-        return "/getsum";
-    }
+//    @GetMapping("/sumByID")
+//    public String sumByID(Model model, Long id) {
+//        String name = userService.getUserName(id);
+//        model.addAttribute("name", name + "의");
+//        System.out.println(id);
+//        // postcount를 sum에 저장
+//        int sum = userService.sumByID(id);
+//        model.addAttribute("sum", sum);
+//        return "/getsum";
+//    }
 
 }
