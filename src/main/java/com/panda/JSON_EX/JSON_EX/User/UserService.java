@@ -62,7 +62,6 @@ public class UserService {
                 System.out.println("key 값 불일치");
             }
 
-            // 변환한 User 객체 리스트를 DB에 저장
         } catch (IOException e) {
             e.printStackTrace();
         }
