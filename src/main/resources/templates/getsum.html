@@ -8,6 +8,18 @@
     <title>Get Sum?</title>
 </head>
 <body>
-    <h1><span th:text="${name}"></span> 총 게시물 수 : <span th:text="${sum}"></span></h1>
+<!--    <h1><span th:text="${name}"></span> 총 게시물 수 : <span th:text="${sum}"></span></h1>-->
+        <table>
+
+            <tr>
+                <td>이름</td>
+                <td>총 게시물 수</td>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.post_count}"></td>
+            </tr>
+
+        </table>
 </body>
 </html>
