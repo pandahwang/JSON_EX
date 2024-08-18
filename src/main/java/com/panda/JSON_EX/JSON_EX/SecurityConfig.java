@@ -23,17 +23,28 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf((csrf) -> csrf.disable());
         http.authorizeHttpRequests((authorize) ->
-                // 로그인 여부 상관 없이 항상 허용하는 구문
-                // authorize.requestMatchers("/**").permitAll()
+            // 로그인 여부 상관 없이 항상 허용하는 구문
+            // authorize.requestMatchers("/**").permitAll()
 
-                // 로그인 여부에 따라 허용하는 구문
-                authorize.requestMatchers("/sum").authenticated()
-                        .anyRequest().permitAll()
+            // 로그인 여부에 따라 허용하는 구문
+            authorize.requestMatchers("/sum").authenticated()
+                    .anyRequest().permitAll()
         );
+
+        // 로그인 form, 페이지 지정 구문
         http.formLogin((formLogin) -> formLogin.loginPage("/login") // 로그인 페이지
                 .defaultSuccessUrl("/")                             // 로그인 성공 페이지
-
         );
+
+        // 로그아웃 설정
+        http.logout((logout) -> logout.logoutUrl("/logout") // 로그아웃 요청 경로
+        );
+
+        //
+        http.exceptionHandling((exceptuons) ->
+                exceptuons.accessDeniedPage("/accessDenied") // 접근 거부 페이지
+        );
+
         return http.build();
     }
 
