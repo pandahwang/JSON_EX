@@ -8,13 +8,16 @@
     <title>JSON_EX</title>
 </head>
 <body>
-    <a href="/signup" sec:authorize="isAnonymous()"><button>회원가입</button></a>
+    <div sec:authorize="isAnonymous()">
+        <a href="/signup"><button>회원가입</button></a>
+        <a href="/login"><button>로그인</button></a>
+    </div>
 
-    <a href="/login" sec:authorize="isAnonymous()"><button>로그인</button></a>
+    <div sec:authorize="isAuthenticated()">
+        <a href="logout"><button>로그아웃</button></a>
+        <a href="/mypage"><button>마이페이지</button></a>
+    </div>
 
-    <a href="logout" sec:authorize="isAuthenticated()"><button>로그아웃</button></a>
-
-    <a href="/mypage" sec:authorize="isAuthenticated()"><button>마이페이지</button></a>
 
     <h1>JSON 데이터 관리 연습</h1>
 
