@@ -2,6 +2,7 @@ package com.panda.JSON_EX.JSON_EX.Member;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -9,17 +10,15 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder;
 
+    // 회원가입 처리
     public void register(Member member) {
-        if(isMemberExist(member.getUsername())) {
+        if(memberRepository.existsByUsername(member.getUsername())) {
             throw new IllegalArgumentException("이미 존재하는 ID입니다.");
         }
-        member.setPassword(encoder.encode(member.getPassword()));
+        member.setPassword(passwordEncoder.encode(member.getPassword()));   // 비밀번호 암호화
         memberRepository.save(member);
     }
 
-    public boolean isMemberExist(String username) {
-        return memberRepository.existsById(username);
-    }
 }
