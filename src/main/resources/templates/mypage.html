@@ -12,9 +12,7 @@
     <a href="/logout"><button>로그아웃</button></a>
     <hr>
     <h1>내 정보</h1>
-
-    <h4 sec:authentication="principal.username"></h4>
-    <h4 sec:authentication="principal.authorities"></h4>
-
+    <h4>사용자 이름 : <span sec:authentication="principal.username"></span></h4>
+    <h4>사용자 권한 : <span sec:authentication="principal.authorities"></span></h4>
 </body>
 </html>
