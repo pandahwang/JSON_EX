@@ -12,15 +12,15 @@ public class MemberController {
     private final MemberService memberService;
     
     // 회원가입 페이지로 이동
-    @GetMapping("/register")
-    public String register() {
-        return "register.html";
+    @GetMapping("/signup")
+    public String signup() {
+        return "signup.html";
     }
 
     // 회원가입 처리
-    @PostMapping("/registerConfirm")
-    public String registerConfirm(Member member) {
-        memberService.register(member);
+    @PostMapping("/signupConfirm")
+    public String signupConfirm(Member member) {
+        memberService.signup(member);
         return "redirect:/";
     }
     // 로그인 페이지로 이동

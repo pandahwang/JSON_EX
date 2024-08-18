@@ -27,11 +27,8 @@ public class SecurityConfig {
                 // authorize.requestMatchers("/**").permitAll()
 
                 // 로그인 여부에 따라 허용하는 구문
-                authorize.requestMatchers("/").permitAll()
-                        .requestMatchers("/register").permitAll()
-                        .requestMatchers("/registerConfirm").permitAll()
-                        .requestMatchers("/login").permitAll()
-                        .anyRequest().authenticated()
+                authorize.requestMatchers("/sum").authenticated()
+                        .anyRequest().permitAll()
         );
         http.formLogin((formLogin) -> formLogin.loginPage("/login") // 로그인 페이지
                 .defaultSuccessUrl("/")                             // 로그인 성공 페이지

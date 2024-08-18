@@ -15,5 +15,5 @@ public class Member {
     @Column(unique = true)
     private String username;
     private String password;
-    private String displayName;
+    private String email;
 }

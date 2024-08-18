@@ -13,7 +13,7 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     // 회원가입 처리
-    public void register(Member member) {
+    public void signup(Member member) {
         if(memberRepository.existsByUsername(member.getUsername())) {
             throw new IllegalArgumentException("이미 존재하는 ID입니다.");
         }
