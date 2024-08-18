@@ -14,14 +14,18 @@ public class MemberService {
 
     // 회원가입 처리
     public void signup(Member member) {
-        if(memberRepository.existsByUsername(member.getUsername())) {
-            throw new IllegalArgumentException("이미 존재하는 ID입니다.");
-        }
-        else if(memberRepository.existsByEmail(member.getEmail())) {
-            throw new IllegalArgumentException("이미 존재하는 Email입니다.");
-        }
         member.setPassword(passwordEncoder.encode(member.getPassword()));   // 비밀번호 암호화
         memberRepository.save(member);
+    }
+
+    // 아이디 중복 확인
+    public boolean isUsernameTaken(String username) {
+        return memberRepository.findByUsername(username).isPresent();
+    }
+
+    // 이메일 중복 확인
+    public boolean isEmailTaken(String email) {
+        return memberRepository.findByEmail(email).isPresent();
     }
 
 }

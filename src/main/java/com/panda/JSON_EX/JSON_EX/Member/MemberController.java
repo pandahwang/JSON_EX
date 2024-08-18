@@ -3,6 +3,7 @@ package com.panda.JSON_EX.JSON_EX.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -20,7 +21,15 @@ public class MemberController {
 
     // 회원가입 처리
     @PostMapping("/signupConfirm")
-    public String signupConfirm(Member member) {
+    public String signupConfirm(Member member, Model model) {
+        if(memberService.isUsernameTaken(member.getUsername())) {
+            model.addAttribute("error", "아이디가 이미 사용 중입니다.");
+            return "signup";
+        }
+        else if (memberService.isEmailTaken(member.getEmail())) {
+            model.addAttribute("error", "이메일이 이미 사용 중입니다.");
+            return "signup";
+        }
         memberService.signup(member);
         return "redirect:/";
     }

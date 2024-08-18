@@ -8,10 +8,7 @@
     <title>회원가입</title>
 </head>
 <body>
-    <div th:if="${param.error}">
-        <h4></h4>
-    </div>
-
+    <h3 th:text="${error}"></h3>
     <form action="/signupConfirm" method="POST">
         <fieldset>
             <legend>회원가입</legend>
@@ -24,6 +21,5 @@
             <button type="submit">회원가입</button>
         </fieldset>
     </form>
-
 </body>
 </html>
