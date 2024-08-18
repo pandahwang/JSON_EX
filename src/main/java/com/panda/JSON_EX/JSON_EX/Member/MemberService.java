@@ -17,6 +17,9 @@ public class MemberService {
         if(memberRepository.existsByUsername(member.getUsername())) {
             throw new IllegalArgumentException("이미 존재하는 ID입니다.");
         }
+        else if(memberRepository.existsByEmail(member.getEmail())) {
+            throw new IllegalArgumentException("이미 존재하는 Email입니다.");
+        }
         member.setPassword(passwordEncoder.encode(member.getPassword()));   // 비밀번호 암호화
         memberRepository.save(member);
     }
