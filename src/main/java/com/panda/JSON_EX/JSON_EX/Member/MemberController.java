@@ -1,6 +1,7 @@
 package com.panda.JSON_EX.JSON_EX.Member;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,4 +30,10 @@ public class MemberController {
 
 
     // Spring Security를 사용하면 로그인 처리를 따로 구현할 필요가 없음
+
+    // 마이페이지로 이동
+    @GetMapping("/mypage")
+    public String mypage(Authentication auth) {
+        return "mypage.html";
+    }
 }
