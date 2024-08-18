@@ -38,7 +38,7 @@ public class MemberController {
     public String login() { return "login.html"; }
 
 
-    // Spring Security를 사용하면 로그인 처리를 따로 구현할 필요가 없음
+    // Spring Security를 사용하면 로그인 처리기능 따로 구현할 필요가 없음
 
     // 마이페이지로 이동
     @GetMapping("/mypage")
